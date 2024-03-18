@@ -141,47 +141,49 @@ public class App extends PApplet {
        } 
        player.y += gravity;
 
-       if (stage == 1) { //stages
-       stageText = "Stage 1. Use 'a' and 'd' to move, and 'w' to jump";
-       stageText2 = "(or space bar to jump)";
-        pad1.setVisibility(false); //toggling visibility to make stages
-        pad2.setVisibility(false);
-        Zone1.setVisibility(false);
-        Zone2.setVisibility(false);
-        Zone3.setVisibility(false);
-        Zone4.setVisibility(false);
-        Zone5.setVisibility(false);
-       }
-       else if (stage == 2) {
+       switch (stage) {
+        case 1:
+        stageText = "Stage 1. Use 'a' and 'd' to move, and 'w' to jump";
+        stageText2 = "(or space bar to jump)";
+         pad1.setVisibility(false); //toggling visibility to make stages
+         pad2.setVisibility(false);
+         Zone1.setVisibility(false);
+         Zone2.setVisibility(false);
+         Zone3.setVisibility(false);
+         Zone4.setVisibility(false);
+         Zone5.setVisibility(false);
+            break;
+        case 2:
         stageText = "Stage 2. Jump on the blue bouncepad for a boost";
         stageText2 = "";
         secondBox.isVisible = false;
         pad1.setVisibility(true);
-       }
-       else if (stage == 3) {
+            break;
+        case 3:
         myBox.display();
         thirdBox.display();
         goldFlag.display();
         pad1.setVisibility(false);
         stageText = "Stage 3. Press 's' to grab on to a box to get a super jump!";
         stageText2 = "(press 'L' for easy mode)";
-       }
-       else if (stage == 4) {
+            break;
+        case 4:
         Zone1.setVisibility(true);
         pad1.setVisibility(true);
         Zone2.setVisibility(true);
         Zone3.setVisibility(true);
         stageText = "Stage 4. Avoid the death zones";
         stageText2 = "";
-       }
-       else if (stage == 5)  {
+        break;
+        case 5:
         Zone4.setVisibility(true);
         Zone3.setVisibility(false);
         Zone5.setVisibility(true);
         pad2.setVisibility(true);
         stageText = "Stage 5. Use what you already know to make it to the goal";
-       }
-       else { // victory screen
+        break;
+        default:
+        // victory screen
         Zone1.setVisibility(false); 
         Zone2.setVisibility(false);
         Zone3.setVisibility(false);
@@ -212,7 +214,9 @@ public class App extends PApplet {
         }
         
        }
-    }
+    
+       } 
+        
 
     
     
