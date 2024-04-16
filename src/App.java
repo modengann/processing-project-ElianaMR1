@@ -78,18 +78,7 @@ public class App extends PApplet {
         else if (keyPressed && key == 's' && isCollidingWithAnyBox(player, myBox, secondBox, thirdBox) ) { 
             player.y += 2;
         }
-        myBox.display(); //displaying my objects
-        secondBox.display();
-        thirdBox.display();
-        goldFlag.display();
-        pad1.display();
-        pad2.display();
-        Zone1.display();
-        Zone2.display();
-        Zone3.display();
-        Zone4.display();
-        Zone5.display();
-        player.display();
+       displayAll();
         stroke(255, 0, 0);
         line(0, 590, 1000, 590); // death line at the bottom
         noStroke();
@@ -141,82 +130,25 @@ public class App extends PApplet {
        } 
        player.y += gravity;
 
-       switch (stage) {
-        case 1:
-        stageText = "Stage 1. Use 'a' and 'd' to move, and 'w' to jump";
-        stageText2 = "(or space bar to jump)";
-         pad1.setVisibility(false); //toggling visibility to make stages
-         pad2.setVisibility(false);
-         Zone1.setVisibility(false);
-         Zone2.setVisibility(false);
-         Zone3.setVisibility(false);
-         Zone4.setVisibility(false);
-         Zone5.setVisibility(false);
-            break;
-        case 2:
-        stageText = "Stage 2. Jump on the blue bouncepad for a boost";
-        stageText2 = "";
-        secondBox.isVisible = false;
-        pad1.setVisibility(true);
-            break;
-        case 3:
-        myBox.display();
-        thirdBox.display();
-        goldFlag.display();
-        pad1.setVisibility(false);
-        stageText = "Stage 3. Press 's' to grab on to a box to get a super jump!";
-        stageText2 = "(press 'L' for easy mode)";
-            break;
-        case 4:
-        Zone1.setVisibility(true);
-        pad1.setVisibility(true);
-        Zone2.setVisibility(true);
-        Zone3.setVisibility(true);
-        stageText = "Stage 4. Avoid the death zones";
-        stageText2 = "";
-        break;
-        case 5:
-        Zone4.setVisibility(true);
-        Zone3.setVisibility(false);
-        Zone5.setVisibility(true);
-        pad2.setVisibility(true);
-        stageText = "Stage 5. Use what you already know to make it to the goal";
-        break;
-        default:
-        // victory screen
-        Zone1.setVisibility(false); 
-        Zone2.setVisibility(false);
-        Zone3.setVisibility(false);
-        Zone4.setVisibility(false);
-        Zone5.setVisibility(false);
-        goldFlag.setVisibility(false);
-        thirdBox.setVisibility(false);
-        pad1.setVisibility(false);
-        pad2.setVisibility(false);
-        if (deaths == 0) { // A different victory screen depending on how well you did bc it makes me happy
-            stageText = "You won with no deaths!!! Perfect score!!!!";
-        }
-        else if (deaths == 1) {
-            stageText = "You won with only 1 death!";
-        }
-        else if (deaths <= 10) {
-            stageText = "You won with only " + deaths + " deaths!";
-        }
-        else if (deaths <= 50) {
-            stageText = "You won with " + deaths + " deaths. Could have been worse.";
-
-        }
-        else {
-            stageText = "You won with " + deaths + " deaths.";
-        }
-        if (easyModeWasUsed) {
-            stageText2 = "You did use easy mode though. Maybe next time try without it?";
-        }
-        
-       }
+       
     
        } 
         
+       public void displayAll(){
+        myBox.display(); //displaying my objects
+        secondBox.display();
+        thirdBox.display();
+        goldFlag.display();
+        pad1.display();
+        pad2.display();
+        Zone1.display();
+        Zone2.display();
+        Zone3.display();
+        Zone4.display();
+        Zone5.display();
+        player.display();
+       }
+       
 
     
     
@@ -268,11 +200,86 @@ public class App extends PApplet {
         stage ++;
         
     }
+    public void setStage(){
+        switch (stage) {
+            case 1:
+            stageText = "Stage 1. Use 'a' and 'd' to move, and 'w' to jump";
+            stageText2 = "(or space bar to jump)";
+             pad1.setVisibility(false); //toggling visibility to make stages
+             pad2.setVisibility(false);
+             Zone1.setVisibility(false);
+             Zone2.setVisibility(false);
+             Zone3.setVisibility(false);
+             Zone4.setVisibility(false);
+             Zone5.setVisibility(false);
+                break;
+            case 2:
+            stageText = "Stage 2. Jump on the blue bouncepad for a boost";
+            stageText2 = "";
+            secondBox.isVisible = false;
+            pad1.setVisibility(true);
+                break;
+            case 3:
+            myBox.display();
+            thirdBox.display();
+            goldFlag.display();
+            pad1.setVisibility(false);
+            stageText = "Stage 3. Press 's' to grab on to a box to get a super jump!";
+            stageText2 = "(press 'L' for easy mode)";
+                break;
+            case 4:
+            Zone1.setVisibility(true);
+            pad1.setVisibility(true);
+            Zone2.setVisibility(true);
+            Zone3.setVisibility(true);
+            stageText = "Stage 4. Avoid the death zones";
+            stageText2 = "";
+            break;
+            case 5:
+            Zone4.setVisibility(true);
+            Zone3.setVisibility(false);
+            Zone5.setVisibility(true);
+            pad2.setVisibility(true);
+            stageText = "Stage 5. Use what you already know to make it to the goal";
+            break;
+            default:
+            // victory screen
+            Zone1.setVisibility(false); 
+            Zone2.setVisibility(false);
+            Zone3.setVisibility(false);
+            Zone4.setVisibility(false);
+            Zone5.setVisibility(false);
+            goldFlag.setVisibility(false);
+            thirdBox.setVisibility(false);
+            pad1.setVisibility(false);
+            pad2.setVisibility(false);
+            if (deaths == 0) { // A different victory screen depending on how well you did bc it makes me happy
+                stageText = "You won with no deaths!!! Perfect score!!!!";
+            }
+            else if (deaths == 1) {
+                stageText = "You won with only 1 death!";
+            }
+            else if (deaths <= 10) {
+                stageText = "You won with only " + deaths + " deaths!";
+            }
+            else if (deaths <= 50) {
+                stageText = "You won with " + deaths + " deaths. Could have been worse.";
+    
+            }
+            else {
+                stageText = "You won with " + deaths + " deaths.";
+            }
+            if (easyModeWasUsed) {
+                stageText2 = "You did use easy mode though. Maybe next time try without it?";
+            }
+            
+           }
+    }
     public void keyPressed() { // cheat code for testing later levels
         if (key == 'p') {
             stage++;
         }
-        if (key == 'l') { // easy moe
+        if (key == 'l') { // easy mode
             if (easyMode) {
                 easyMode = false;
             }
